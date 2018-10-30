@@ -1,1 +1,1 @@
-conquer-idle
+conquer idle
