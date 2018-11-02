@@ -150,7 +150,11 @@ public class Grid : MonoBehaviour
         var positions = GetNeighboursPositions(nodePosition, crosswise);
         for (int i = 0; i < positions.Length; i++)
         {
-            neighbours.Add(GetNode(positions[i]));
+            GameObject temp = GetNode(positions[i]);
+            if(temp != null)
+            {
+                neighbours.Add(temp);
+            }
         }
         return neighbours.ToArray();
 
@@ -169,7 +173,11 @@ public class Grid : MonoBehaviour
 
         for (int i = 0; i < reletivesPosition.Length; i++)
         {
-            reletives.Add(GetNode(nodeX + reletivesPosition[i].x, nodeY + reletivesPosition[i].y));
+            GameObject temp = GetNode(nodeX + reletivesPosition[i].x, nodeY + reletivesPosition[i].y);
+            if (temp != null)
+            {
+                reletives.Add(temp);
+            }
         }
 
         return reletives.ToArray();
