@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        cash = ResourceHandler.Instance.GetResource(ResourceType.Cash);
+        cash = ResourceHandler.Instance.GetResource(ResourceType.Wood);
         text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(1, 10f, workers).ToString();
         text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(10, 10f, workSpeed);
     }
