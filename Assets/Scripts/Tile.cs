@@ -8,8 +8,8 @@ public class Tile : MonoBehaviour
     TextMesh text1;
     [SerializeField]
     TextMesh text2;
-    [SerializeField]
-    Cash cash;
+    
+    private Resource cash;
 
     float workers = 0;
     float workSpeed = 1;
@@ -17,6 +17,7 @@ public class Tile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        cash = ResourceHandler.Instance.GetResource(ResourceType.Cash);
         text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(1, 10f, workers).ToString();
         text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(10, 10f, workSpeed);
     }
@@ -24,15 +25,15 @@ public class Tile : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        cash.money += workers * workSpeed;
+        cash.Amount += workers * workSpeed;
 	}
 
     public void LeftClick()
     {
         double cost = CalcCost(1f, 10f, workers);
-        if(cost < cash.money)
+        if(cost < cash.Amount)
         {
-            cash.money -= cost;
+            cash.Amount -= cost;
             workers++;
             text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(1, 10f, workers).ToString();
         }
@@ -41,9 +42,9 @@ public class Tile : MonoBehaviour
     public void RightClick()
     {
         double cost = CalcCost(10f, 10f, workSpeed);
-        if (cost < cash.money)
+        if (cost < cash.Amount)
         {
-            cash.money -= cost;
+            cash.Amount -= cost;
             workSpeed++;
             text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(10, 10f, workSpeed);
         }
