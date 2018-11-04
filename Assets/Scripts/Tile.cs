@@ -8,18 +8,20 @@ public class Tile : MonoBehaviour
     TextMesh text1;
     [SerializeField]
     TextMesh text2;
-    
+    [SerializeField]
+    Buildings building;
+
     private Resource cash;
 
-    float workers = 0;
+    float workers = 1;
     float workSpeed = 1;
 
     // Use this for initialization
     void Start()
     {
-        cash = ResourceHandler.Instance.GetResource(ResourceType.Wood);
-        text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(1, 10f, workers).ToString();
-        text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(10, 10f, workSpeed);
+        cash = ResourceHandler.Instance.GetResource(building.costResource);
+        text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(building.costBase, building.costIncrease, workers).ToString();
+        text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(building.costBase, building.costIncrease, workSpeed);
     }
 	
 	// Update is called once per frame
@@ -30,28 +32,28 @@ public class Tile : MonoBehaviour
 
     public void LeftClick()
     {
-        double cost = CalcCost(1f, 10f, workers);
+        double cost = CalcCost(building.costBase, building.costIncrease, workers);
         if(cost < cash.Amount)
         {
             cash.Amount -= cost;
             workers++;
-            text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(1, 10f, workers).ToString();
+            text1.text = "Workers: " + workers.ToString() + "\n Next workers costs: " + CalcCost(building.costBase, building.costIncrease, workers).ToString();
         }
     }
 
     public void RightClick()
     {
-        double cost = CalcCost(10f, 10f, workSpeed);
+        double cost = CalcCost(building.costBase, building.costIncrease, workSpeed);
         if (cost < cash.Amount)
         {
             cash.Amount -= cost;
             workSpeed++;
-            text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(10, 10f, workSpeed);
+            text2.text = "Work speed: " + workSpeed + "\n Next work speed costs: " + CalcCost(building.costBase, building.costIncrease, workSpeed);
         }
     }
 
-    public double CalcCost(float _base, float multiplier, float level)
+    public double CalcCost(double _base, double multiplier, double level)
     {
-        return _base * Mathf.Pow(multiplier, level);
+        return _base * Mathf.Pow((float) multiplier, (float) level);
     }
 }

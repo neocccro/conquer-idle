@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc530a260b42899468c0094476ed50c6, type: 3}
+  m_Name: Field
+  m_EditorClassIdentifier: 
+  tileName: 
+  tileColor: {r: 0, g: 0, b: 0, a: 0}
+  costBase: 1
+  costIncrease: 2
+  costResource: 0
+  productionResource: 0
+  buildResource: 1
+  buildCost: 1
