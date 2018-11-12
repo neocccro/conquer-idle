@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc530a260b42899468c0094476ed50c6, type: 3}
   m_Name: Field
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: Field
   tileColor: {r: 0, g: 0, b: 0, a: 0}
   costBase: 1
   costIncrease: 2
-  costResource: 0
-  productionResource: 0
+  costResource: 1
+  productionResource: 1
   buildResource: 1
   buildCost: 1
